@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!-- MySQL does not support foreign keys. This means   -->
+<!-- that this XML file will not reflect foreign key   -->
+<!-- relationships. You will have to do that yourself. -->
+<database name="jax">
+  <table  name="content">
+    <column name="contentID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="userID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <column name="lastUpdate"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <column name="available"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <column name="mime"
+            required="true"
+            size="25"
+            type="CHAR"/>
+    <column name="title"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="search"
+            required="true"
+            type="LONGVARCHAR"/>
+    <column name="module"
+            required="true"
+            size="25"
+            type="CHAR"/>
+    <index>
+      <index-column name="userID"/>
+      <index-column name="posted"/>
+      <index-column name="mime"/>
+      <index-column name="title"/>
+      <index-column name="module"/>
+    </index>
+    <foreign-key foreignTable="users">
+      <reference local="userID" foreign="userID"/>
+    </foreign-key>
+  </table>
+  <table  name="content_groups">
+    <column name="contentID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="groupID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="TINYINT"/>
+    <column name="permissions"
+            required="true"
+            default="644"
+            size="3"
+            type="SMALLINT"/>
+    <foreign-key foreignTable="content">
+      <reference local="contentID" foreign="contentID"/>
+    </foreign-key>
+    <foreign-key foreignTable="groups">
+      <reference local="groupID" foreign="groupID"/>
+    </foreign-key>
+  </table>
+  <table  name="html">
+    <column name="contentID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="userID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="title"
+            required="true"
+            size="255"
+            type="VARCHAR"/>
+    <column name="name"
+            required="true"
+            size="64"
+            type="VARCHAR"/>
+    <column name="html"
+            required="true"
+            size=""
+            type="LONGVARCHAR"/>
+    <column name="lastUpdate"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <index>
+      <index-column name="userID"/>
+      <index-column name="title"/>
+      <index-column name="lastUpdate"/>
+    </index>
+    <unique>
+      <unique-column name="name"/>
+    </unique>
+    <foreign-key foreignTable="content">
+      <reference local="contentID" foreign="contentID"/>
+    </foreign-key>
+  </table>
+</database>

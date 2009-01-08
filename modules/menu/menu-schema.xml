@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- MySQL does not support foreign keys. This means   -->
+<!-- that this XML file will not reflect foreign key   -->
+<!-- relationships. You will have to do that yourself. -->
+<database name="jax">
+  <table  name="menu_categories">
+    <column name="contentID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="name"
+            required="true"
+            size="100"
+            type="CHAR"/>
+    <column name="url"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="hits"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="sort"
+            required="true"
+            default="0"
+            size="2"
+            type="TINYINT"/>
+    <index>
+      <index-column name="sort"/>
+    </index>
+    <foreign-key foreignTable="content">
+      <reference local="contentID" foreign="contentID"/>
+    </foreign-key>
+  </table>
+  <table  name="menu_links">
+    <column name="contentID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="categoryID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="name"
+            required="true"
+            size="100"
+            type="CHAR"/>
+    <column name="url"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="hits"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="sort"
+            required="true"
+            default="0"
+            size="2"
+            type="TINYINT"/>
+    <index>
+      <index-column name="sort"/>
+    </index>
+    <foreign-key foreignTable="content">
+      <reference local="contentID" foreign="contentID"/>
+    </foreign-key>
+  </table>
+</database>
+<!-- END OF MYSQL2TURBINE DUMP -->

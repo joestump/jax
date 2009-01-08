@@ -1,0 +1,859 @@
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V3.1//EN">
+
+<book>
+  <bookinfo>
+    <title>JAX Framework</title>
+    <subtitle>A detailed manual for developing, designing and using the JAX Framework</subtitle>
+
+  <copyright>
+    <year>2003</year>
+    <holder>JCS Solutions</holder>
+  </copyright>
+
+  <legalnotice>
+    <para>
+This document is copyright 2003 JCS Solutions. No reproduction permitted in any form without expressed written consent from JCS Solutions.
+    </para>
+  </legalnotice>
+  <author>
+    <firstname>Joseph</firstname>
+    <surname>Stump</surname>
+    <authorblurb>
+      <para>
+        <email>jstump@jcssolutions.com</email>
+      </para>
+    </authorblurb>
+  </author>
+  <abstract>
+    <para>
+This document details a few things. First it covers how to develop using the JAX Framework. It also serves as a user manual for those wishing to use the JAX Control Panel.
+    </para>
+  </abstract>
+
+  </bookinfo>
+
+  <toc>
+  </toc>
+
+<chapter>
+  <title>Introduction</title>
+  <sect1>
+    <title>Introduction</title>
+    <para>
+The JAX Framework was created with one goal in minde: to make use of portable code to rapidly build complex web software. The system is broken down into three parts. The first is the base system, which includes the core libraries of the system. The second are the various modules, which are applications built using the base system. The third is the JAX Control Panel, which is itself a module. The JAX Control Panel was built with the goal of allowing other modules to rapidly create administrative forms for tables.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Overview</title>
+    <sect2>
+      <title>JAX Framework</title>
+      <para>
+The JAX Framework is the base of the JAX system and is comprised of three major components: PEAR, Smarty and the JAX Foundation Classes (JFC). The version of PEAR included with JAX is an unaltered version of PEAR, but does not include packages that are not directly used by JAX. JAX includes the latest stable version of Smarty that is known to work with all of the module templates.
+      </para>
+      <para>
+The JAX Foundation Classes are broken up into packages, much like PEAR is. Each package is a directory with related classes stored in it. By definition classes that are a part of the JFC should be reusable and not reliant on a JAX module. The JFC currently contains code for base objects, core authentication, templating and form creation. 
+      </para>
+    </sect2>
+    <sect2>
+      <title>JAX Modules</title>
+      <para>
+JAX Modules are the application level of the JAX Framework. For instance, this is where code for creating and rendering a blog or FAQ would be stored. Modules created with the JFC follow a basic format which allows programmers to focus on the logic of their program.
+      </para>
+      <para>
+A module is a class that is derived from one of the authentication modules in the JFC. Currently supported are JxAuthNo (no authentcation), JxAuthUser (must be logged in) and JxAuthAdmin (must be logged in as an administrator). Each module is ran via the controller file <computeroutput>index.php</computeroutput>. Once the module is initialized it immediately has a database connection, open log file, an instance of the JxUser class initiated with the current user's information, an instance of the outer page template and an instance of its own template.
+      </para>
+    </sect2>
+    <sect2>
+      <title>JAX Control Panel</title>
+      <para>
+The JAX Control Panel (JCP) is actually a module built using JAX. If you are creating a module which has an administrative backend you will need this module installed. Each module has a file called <computeroutput>admin.php</computeroutput>, which houses all of the backend code for that module. JCP is the commont interface that loads and manages the backend code stored in admin.php.
+      </para>
+    </sect2>
+  </sect1>
+</chapter>
+<chapter>
+  <title>Coding Practices</title>
+  <sect1>
+    <title>Overview</title>
+    <para>
+A lot of what JAX is revolves around proper coding practices. Outlined here are the generally accepted coding practices of JAX thus far. The practices cover
+how to set up modules, identation policies, documentation policies, etc.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Coding Styles/Standards</title>
+    <sect2>
+      <title>Naming Conventions</title>
+      <sect3>
+        <title>Classes</title>
+        <para>
+Classes should be named with the "bumpy" naming convention (aka Java Style). For example, an interface class to an address book should be named AddressBook and not address_book. The first letter of each word should be capatilized. 
+        </para>
+      </sect3>
+      <sect3>
+        <title>Functions, Methods and Variables</title>
+        <para>
+As with classes, functions and methods should be named in the "bumpy" naming
+convention. The only difference is that the first letter of functions and methods should NOT be capitalized. For instance a method in AddressBook might be getAddress() and a variable might be $instance->homeAddress.
+        </para>
+      </sect3>
+      <sect3>
+        <title>Constants</title>
+        <para>
+Constants should always be capitalized with underscores between words. They should be prepended with the modules name. ADDRESS_CONSTANT would be a good example of a contanct in the address book module.
+        </para>
+      </sect3>
+      <sect3>
+        <title>Indenting and Line Length</title>
+        <para>
+  Indenting should be a tab-width of 2 spaces. The tab character "\t" should not be used, instead actual space characters should be used. Lines should be broken
+  at around 80 characters and shoul never wrap, unless absolutely necessary.
+        </para>
+        <screen>
+  &lt;?php
+  
+    // C style comments should be used instead of Perl style
+    function foo() 
+    {
+      echo 'This is a really long line of text that just goes on and on '.
+           'forever. I wish it would just stop and quit wrapping, but I '.
+           'love long lines so on it goes.'."\n";
+    }
+  
+  &gt;?>
+        </screen>
+      </sect3>
+      <sect3>
+        <title>Control Structures</title>
+        <para>
+  The standard C-style of curly braces is the desired style. This means that
+  each curly brace is always on a new line and indented to be in line with the
+  corresponding control structure.
+        </para>
+        <screen>
+  &lt;?php
+  
+    if($var == 'foo')
+    {
+      // do something
+    }
+    else
+    {
+      // do something else
+    }
+  
+    switch($var)
+    {
+      case 1:
+        // do something
+        break;
+    }
+  
+  ?&gt;
+        </screen>
+      </sect3>
+      <sect3>
+        <title>Function Calls</title>
+        <para>
+  Function calls should be called with no spaces between the function name and the opening parethesis or between the argument list. Assignments to variables that appear on multiple lines should be lined up appropriately.      
+        <para>
+        <screen>
+  &lt;?php
+  
+    $var = foo($arg,$arg2,$arg3);
+    
+    // line up 
+    $short            = foo($arg);
+    $longVariableName = foo($arg1);
+  
+  ?&gt;
+        </screen>
+      </sect3>
+      <sect3>
+        <title>Comments</title>
+        <para>
+  All code within the module should be documented using PHPDocumentor. While it is not required that the documentation be rendered by PHPDocumentor and stored in the module file, it is required that at least the comments exist within the code.
+        </para>
+        <para>
+  C style comments (/* */) and C++ comments (//) are both fine. The use of Perl
+  comments is discouraged.
+        </para>
+      </sect3>
+      <sect3>
+        <title>Function Definitions</title>
+        <para>
+  Functions should be named according to the "bumpy" naming convention. Arguments with default values go at the end of the argument list. No spaces should be in the declaration. Functions should always attempt to return a meaningful value.
+        </para>
+        <screen>
+  &lt;?php
+  
+    function myFunction(&$foo,$bool=false)
+    {
+      if($bool)
+      {
+        return true;
+      }
+  
+      return false;
+    }
+  
+  ?&gt;
+        </screen>
+      </sect3>
+      <sect3>
+        <title>Including Code</title>
+        <para>
+  When you are unconditionally including a class/library file use require_once(). When your are conditionally including a class/libarary (ie. factories) use include_once(). It is not recommended that you use require() or include().
+        </para>
+      </sect3>
+    </sect2>
+    <sect2>
+      <title>Boolean vs. PEAR_Error</title>
+      <para>
+  When possible functions and classes should return and use PEAR_Error instead
+  of simple Boolean. PEAR_Error allows for much more complex error handling and
+  management. 
+      </para>
+    </sect2>
+  </sect1>
+  <sect1>
+    <title>Interface Classes</title>
+    <para>
+Core module classes are actually applications. Under normal circumstances if you have a module that needs to access or interface with another module you would not initialize the entire application just to get some data. For this reason you should create interface classes that can be used by other modules if need be. Below is an example of an interface class for a module.
+    </para>
+    <screen>
+&lt;?php
+
+/**
+* JxHello
+*
+* @author Joe Stump &lt;joe&@joestump.net&gt;
+* @filesource
+* @package JAX
+*/
+
+/**
+* JxHello Class
+*
+* @author Joe Stump &lt;joe&@joestump.net&gt;
+* @package hello
+*/
+class JxHello
+{
+  /**
+  * getItem
+  *
+  * Get an item from the table
+  *
+  * @author Joe Stump &lt;joe&@joestump.net&gt;
+  * @access public
+  * @param int $id
+  * @return mixed 
+  */
+  function getItem($id)
+  {
+    $db = & JxSingleton::factory('db');
+    $sql = "SELECT *
+            FROM table
+            WHERE id='$id'";
+
+    $result = $db->query($sql);
+    if(!DB::isError($result) && $result->numRows())
+    {
+      return $result->fetchRow(); 
+    }
+
+    return array();
+  }
+}
+
+?&gt;
+    </screen>
+    <para>
+The above class allows the user to quickly include the interface class and then access data from the other module without having to initialize the entire module.
+    </para>
+  </sect1>
+</chapter>
+
+<chapter>
+  <title>Modules</title>
+  <sect1>
+    <title>File Structure</title>
+    <para>
+Each module has the same file structure. Within the module directory you will find all of the files required to run that module within the JAX Framework. Below is the directory structure for the <computeroutput>faq</computeroutput> module.
+    <para>
+    <screen>
+./admin.php
+./config.php
+./faq.php
+./faq.sql
+./init.php
+./install.php
+./plugins
+./tpl
+./tpl/templates
+./tpl/templates/faq.tpl
+./tpl/templates/viewFAQ.tpl
+./tpl/templates_c
+./tpl/config
+./tpl/cache
+./tpl/images
+./tpl/images/faq_icon.gif
+./tpl/css
+./tpl/javascript
+    </screen>
+    <para>
+Not every module will require the use of all of the files, but to keep uniformity intact you should always have the above file structure in place within your module. 
+    </para>
+    <sect2>
+      <title>admin.php</title>
+      <para>
+The file <computeroutput>admin.php</computeroutput> is used by the JAX Control Panel. If no class is defined in this file JCP will assume that there are no administrative options for your module. 
+      </para>
+    </sect2>
+
+    <sect2>
+      <title>config.php</title>
+      <para>
+For now <computeroutput>config.php</computeroutput> is where you would put global configuration options specific to your module. This will soon be deprecated by a coming feature that allows modules to store preferences in a database so that users do not have to access the filesystem to change module preferences. This file is only included when a module is implicitly called.
+      </para>
+    </sect2>
+    <sect2>
+      <title>faq.php</title>
+      <para>
+The main module file is called <computeroutput>faq.php</computeroutput> and should be the exact same name as the name of your module. This file includes your core module class and is only loaded when a module is implicitly called. 
+      </para>
+    </sect2>
+    <sect2>
+      <title>init.php</title>
+      <para>
+The file <computeroutput>init.php</computeroutput> is loaded each time the JAX Framework is loaded. Each module's <computeroutput>init.php</computeroutput> is loaded so that modules may load plugins and other code that may be used by other modules. You should not place module specific code inside of <computeroutput>init.php</computeroutput> rather put it in <computeroutput>config.php</computeroutput>, which is only loaded when your module is implicitly called.
+      </para>
+    </sect2>
+    <sect2>
+      <title>install.php</title>
+      <para>
+The file <computeroutput>install.php</computeroutput> is a special file that is used by <computeroutput>installer.php</computeroutput>. The installer script includes this file and adds your module to the database based on the contents of <computeroutput>install.php</computeroutput>. The file <computeroutput>skeleton.sh</computeroutput> creates a default file for you, which should only require minor modifications.
+      </para>
+    </sect2>
+    <sect2>
+      <title>plugins</title>
+      <para>
+The directory <computeroutput>plugins</computeroutput> holds all of your module's plugins. Each module will most likely have at least two plugins (one to attach itself to JCP and another to attach itself to the <computeroutput>myaccount</computeroutput> module). Plugins in this directory are loaded automatically by the JAX Framework each time the framework is loaded. 
+      </para>
+    </sect2>
+
+    <sect2>
+      <title>tpl</title>
+      <para>
+The directory <computeroutput>tpl</computeroutput> holds all of the presentation for your module. First there is the standard Smarty directory structure and, secondly, there are directories for CSS and JavaScript files related to your module.
+      </para>
+    </sect2>
+  </sect1>
+  <sect1>
+    <title>Creating a Module</title>
+    <para>
+In the <computeroutput>modules</computeroutput> directory you will find a file called <computeroutput>skeleton.sh</computeroutput> which facilitates creating modules. The script creates the basic directory structure as well as a basic core moodule file. The script takes two arguments: your module's name and the default authentication module. 
+    </para>
+    <screen>
+      <prompt>[user@host]$</prompt> <command>./skeleton.sh hello JxAuthNo</command>
+    </screen>
+    <para>
+The above command creates a module called <computeroutput>hello</computeroutput> with the default authentication set to JxAuthNo, which means no authentication is required. When you open up your core module file, <computeroutput>hello.php</computeroutput> you should the following.
+    </para>
+    <screen>
+&lt;?php 
+
+  class hello extends JxAuthNo 
+  {
+    function hello()
+    {
+      $this->JxAuthNo();
+    }
+
+    function _hello()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+    </screen>
+    <para>
+The above is the bare minimum which is required to run a valid JAX module. Of course the above module won't do anything. 
+    </para>
+  </sect1>
+  <sect1>
+    <title>Coding a Module</title>
+    <para>
+Now that our module has been created we will need to add some code to it so that our module is actually useful. When your module is initialized you will have at your fingertips an array of useful tools ready to such as a database connection, an open log file, a Smarty template, etc. Below we outline how to use these features in your module.
+    </para>
+    <sect2>
+      <title>How a Module is Initialized</title>
+      <para>
+Modules are initialized in a very specific manner by the JAX Framework. It is extremely important to remember this sequence before you start programming your module. Below is an outline of how your module is loaded.
+      </para>
+<orderedlist numeration="arabic">
+<listitem>
+<para> <computeroutput>init.php</computeroutput> is loaded</para>
+</listitem>
+<listitem>
+<para> Plugins in the module's <computeroutput>plugins</computeroutput> directory are loaded</para>
+</listitem>
+<listitem>
+<para> <computeroutput>config.php</computeroutput> is loaded</para>
+</listitem>
+<listitem>
+<para> <computeroutput>hello.php</computeroutput> is loaded</para>
+</listitem>
+<listitem>
+<para> An instance of the class <computeroutput>hello</computeroutput> is initialized via it's constructor (ie. <computeroutput>$module = & new hello();</computeroutput>)
+</listitem>
+<listitem>
+<para> The authentication function inherited from the base class is ran, providing the module's authentication
+</listitem>
+<listitem>
+<para> If a valid <computeroutput>eventHandler</computeroutput> is passed via the URI it is ran
+</listitem>
+<listitem>
+<para> The module is rendered by first rendering the module template and then placing that into the outer page template</para>
+</listitem>
+
+</orderedlist>
+    </sect2>
+    <sect2>
+      <title>Running a Module</title>
+      <para>
+If your module is named <computeroutput>news</computeroutput> you would call your module in the following fashion.
+      </para>
+      <screen>
+http://www.example.com/index.php/news
+      </screen>
+      <para>
+The index file handles initializing your module and running any events that may have been passed along the URI.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Passing GET Arguments via the URI</title>
+      <para>
+JAX allows you to pass arguments both regular the stanard GET as defined in the HTTP spec or via the URI. As it is known many search engines do not index URL's that have ?'s and &amp;'s in them so JAX provides a different alternative. The alternative works much like force typing. Below is an example.
+      </para>
+      <screen>
+http://www.example.com/index.php/news/eventHandler=list/newsID=12345
+      </screen>
+      <para>
+In the above example JAX would parse the URI and put anything past the module that includes and equal sign into the <computeroutput>$_GET</computeroutput> super variable. You can then reference the two variables as follows.
+      </para>
+      <screen>
+&lt;?php
+
+  echo $_GET['newsID'];
+  echo $_GET['eventHandler'];
+
+?&gt;
+      </screen>
+    </sect2>
+    <sect2>
+      <title>Using the Module Template</title>
+      <para>
+Probably one of the most important features of the JAX Framework is the separation of logic and presentation. This is done using the Smarty template engine. As described in the File Structure section, each module has its own template directory called <computeroutput>./tpl/templates</computeroutput>. The default template for your module is <computeroutput>./tpl/templates/modulename.tpl</computeroutput> or in our example <computeroutput>./tpl/templates/hello.tpl</computeroutput>.
+      </para>
+      <para>
+It is important to note that you won't interface directly with your module's template. Instead you use the method <computeroutput>setData()</computeroutput> to assign variables to your template. The function <computeroutput>setData()</computeroutput> is used as a buffer between the module and the module template. It behaves exactly like Smartys <computeroutput>assign()</computeroutput> function only it assigns the data to a member variable in your module called <computeroutput>$data</computeroutput> and then assigns it to the template when the page is ready to render. The reason for this is so plugins can interface and change data created by your module before it is put into the module template.
+      </para>
+      <sect3>
+        <title>Changing the Module Template File</title>
+        <para>
+Often you will find the need to change the default template file. To do this simply change <computeroutput>$this->templateFile</computeroutput> to the name of the template file which you wish to use. Remember that this file must be in the module's templates directory!
+        </para>
+        <screen>
+&lt;?php 
+
+  class hello extends JxAuthNo 
+  {
+    function hello()
+    {
+      $this->JxAuthNo();
+      $this->templateFile = 'mytemplate.tpl';
+    }
+
+    function _hello()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+        </screen>
+      </sect3>
+    </sect2>
+    <sect2>
+      <title>Using the Database</title>
+      <para>
+When your module is loaded a database connection awaits you. The database connection is stored, as a reference, in <computeroutput>$this->db</computeroutput> and is a valid instance of the PEAR DB class. Use the class just as you would the regular PEAR DB class. Below is an example of querying a table and assigning the results to the module template.
+      </para>
+      <screen>
+&lt;?php 
+
+  class hello extends JxAuthNo 
+  {
+    function hello()
+    {
+      $this->JxAuthNo();
+    }
+
+    // This function is an eventHandler and must be called implicitly via
+    // the URI
+    function view()
+    {
+      $sql = "SELECT *
+              FROM table
+              WHERE id='".$_GET['id']."'";
+
+      $result = $this->db->query($sql);
+      if(!DB::isError($result) && $result->numRows())
+      {
+        $array = array();
+        while($row = $result->fetchRow())
+        {
+          $array[] = $row;
+        }
+
+        $this->setData('array',$array);
+      }
+    }
+
+    function _hello()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+      </screen>
+      <para>
+The instance of PEAR DB is with a default fetch mode of <computeroutput>DB_FETCHMODDE_ASSOC</computeroutput>, which is identical to <computeroutput>mysql_fetch_array()</computeroutput>.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Logging</title>
+      <para>
+An instance of the PEAR Log class is included with your module allowing your module to log to a common log file. By default this is a text log file. See the PEAR Log documentation for more information.
+      </para>
+    </sect2>
+    <sect2>
+      <title>Event Handlers</title>
+      <para>
+Event handlers were created so that modules can run different events from each class. For instance if you had a news module you could have one event for viewing a news story and another for listing the news stories. Below is an example.
+      </para>
+      <screen>
+&lt;?php
+
+  class news extends JxAuthNo 
+  {
+    function news()
+    {
+      $this->JxAuthNo();
+    }
+
+    function list()
+    {
+      $this->templateFile = 'newsList.tpl';
+
+      $sql = "SELECT *
+              FROM news
+              ORDER BY posted DESC";
+
+      $result = $this->db->query($sql);
+      if(!DB::isError($result) && $result->numRows())
+      {
+        $news = array();
+        while($row = $result->fetchRow())
+        {
+          $news[] = $row;
+        }
+
+        $this->setData('news',$row);
+      }
+    }
+
+    function view()
+    {
+      $this->templateFile = 'newsView.tpl';
+
+      // Interface classes!
+      $news = JxNews::getNews($_GET['newsID']);
+      if(count($news))
+      {
+        $this->setData('news',$news);
+      }
+    }
+
+    function _news()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+      </screen>
+      <para>
+Now if you wanted to run the one of the other methods instead of merely relying on the constructor you pass <computeroutput>eventHandler</computeroutput> via the URI and specify which method to run.
+      </para>
+      <screen>
+http://www.example.com/index.php/news/eventHandler=list
+http://www.example.com/index.php/news/eventHandler=view/newsID=12345
+      </screen>
+    </sect2>
+    <sect2>
+      <title>User Class</title>
+      <para>
+The core of JAX handles logins and logouts. If a person is logged in then an instance of <computeroutput>$this->user</computeroutput> will contain all of the information for the user that is currently logged in. You can tell if a user is logged in or not by testing <computeroutput>$this->user->userID</computeroutput>. The userID will be set to 0 if the user is an anonymous user. Of course authentication should be done via the JxAuth base classes.
+      </para>
+      <screen>
+&lt;?php 
+
+  class hello extends JxAuthNo 
+  {
+    function hello()
+    {
+      $this->JxAuthNo();
+    }
+
+    // This function is an eventHandler and must be called implicitly via
+    // the URI
+    function hello()
+    {
+      if($this->user->email == 'joe@joestump.net')
+      {
+        $this->setData('msg','Welcome back Joe Stump!');
+      }
+      else
+      {
+        $this->setData('msg','Who are you?');
+      }
+    }
+
+    function _hello()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+      </screen>
+      <para>
+Don't worry about passing the user class to your module's template. The parent module class passes it to your module as a class. Thus you can reference the JxUser class in your Smarty template. For example the following is perfectly valid in your module template.
+      </para>
+      <screen>
+Welcome back {$user->email}!
+      </screen> 
+    </sect2>
+  </sect1>
+</chapter>
+<chapter>
+  <title>Core Classes</title>
+  <sect1>
+    <title>JxHtmlForm</title>
+    <para>
+The JxHtmlForm family of classes is a comprehensive form handling class. It works on the basis of simple containers and fields. The master container class is
+JxHtmlForm. There are three basic containers; JxHtmlFormContainer, JxVbox and JxHbox. While JxHtmlForm can contain field components directly it is recommended that you create at least one container and put field components into the container and then add the container to the JxHtmlForm instance.
+    </para>
+    <sect2>
+      <title>Creating a Form</title>
+      <screen>
+&lt;?php
+
+  $form = & new JxHtmlForm();
+
+  $container = & new JxHtmlFormContainer('nameofcontainer');
+  $container->label = 'My First Form';
+
+  // First param is the name of the field, the second is the value, which is
+  // set to $_POST['name'] (you can change this as needed) so when the form
+  // errors out it will have the value saved. The third and fourth parameters
+  // are size and maxLength.
+  $field = & new JxFieldText('name',$_POST['name'],15,25);
+  $field->required = true; // form will error out if no value is given
+  $field->label = 'Your Name';
+  $container->addComponent($field);
+
+  // Add the container to our form
+  $form->addComponent($container);
+  if(!$form->isValid())
+  {
+    echo $form->getForm(); // renders and returns form
+  }
+  else
+  {
+    // our form was processed accordingly!
+    $data = $form->getData(); // get the form data
+ 
+    echo '&lt;pre&gt;'; print_r($data); echo '&lt;/pre&gt;'; 
+  }
+
+?&gt;
+      </screen> 
+    </sect2>
+  </sect1> 
+</chapter>
+<chapter>
+  <title>Plugins</title>
+  <sect1>
+    <title>Overview</title>
+    <para>
+The JAX Framework supports plugins that allow modules to interact with each other without having to modify the actual module code. This would allow a person to modify the registration module to be modified by another module to collect credit card information during the signup process. There are currently two types of plugins: system wide and module level. 
+    </para>
+  </sect1>
+  <sect1>
+    <title>System Wide Plugins</title>
+    <para>
+System wide plugins are initialized by the framework at the same time as the module level plugins, with one exception. They are stored in a different location and copmletely initialized and enabled by the framework. As far as programming goes they are identical to module level plugins.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Module Level Plugins</title>
+    <para>
+Module level plugins are stored in the <computeroutput>plugins</computeroutput> directory of your module. They are loaded and enabled by the JAX Framework when modules are called. Beware that plugins are loaded and enabled no matter which module is being ran by the framework.
+    </para>
+  </sect1>
+  <sect1>
+    <title>How Plugins Work</title>
+    <para>
+Plugins work with the idea of "hooks". A hook is a place within a module or a script where arbitrary code can attach itself to be ran. When a hook is called the plugin manager checks to see if any plugins have attached themselves to that hook and then runs the methods associated with the hook.
+    </para>
+    <para>
+A plugin is a class which registers various methods with predefined hooks. When those predefined hooks are ran the methods are are then ran. An optional second argument may be passed to the hook, which will then be passed as the first argument of the plugin's method that is attached to the hook. 
+    </para>
+    <para>
+The way this works within modules is that when a hook is called a reference to the current module is passed to the plugin. This allows the plugin's method to modify all aspects of the method just as if the plugin's method was method within the module itself.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Creating a Hook</title>
+    <para>
+Creating a hook is extremely easy. Before you add your hook it is extremely important to remember about its placement. Currently, there is no way to limit which plugins are allowed to attach themselves to your hook, which means you have no control over what code is ran via your hook. Below is a simple example of running a hook from our module hello.
+    </para>
+    <screen>
+&lt;?php 
+
+  class hello extends JxAuthNo 
+  {
+    function hello()
+    {
+      $this->JxAuthNo();
+
+      // Fire the hook 'hello_constructor', which will call any plugins 
+      // attached to the hook.
+      JxPlugin::doHook('hello_constructor',$this);
+    }
+
+    function _hello()
+    {
+      $this->_JxAuthNo();
+    }
+  }
+
+?&gt;
+    </screen>
+    <para>
+There are a few other things to note about plugins. First off there is no way to determine the order in which plugins are ran. Secondly, since you don't know which plugins ran before your plugin you can't be sure what has happened to the module before you get it. Because of these factors it is highly recommended that you don't alter the actual data, instead alter it and save it as something else within the module.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Creating a Plugin</title>
+    <para>
+No matter the type of the plugin they are all programmed the same way. The idea is to create a class and in its constructor register methods in the plugin class with various hooks. Below is a simple example.
+    </para>
+    <screen>
+&lt;?php
+
+  class MyPlugin extends JxPlugin
+  {
+    function MyPlugin()
+    {
+      $this->JxPlugin();
+    }
+
+    // REMEMBER: Plugins are worthless unless you pass the module to your
+    // plugin method by reference. Otherwise the module variable is a copy.
+    function hello(&$module)
+    {
+      $module->data['mychange'] = 'Hello';
+    }
+
+    function _MyPlugin()
+    {
+      $this->_JxPlugin();
+    }
+  }
+
+?&gt;
+    </screen>
+    <para>
+If you are more comfortable you could pass the module as <computeroutput>$this</computeroutput> and make it seem even more like your plugin is a part of the module. Plugins are initialized with all of the goodies that modules are as well. This includes a database connection, an open log, user class, etc. They are in the usual places as they are in the modules as well.
+    </para>
+  </sect1>
+</chapter>
+<chapter>
+  <title>Templates</title>
+  <sect1>
+    <title>Overview</title>
+    <para>
+The JAX Framework utilizes the Smarty template engine. If you are already familiar with how Smarty works you will only need to pay attention to how JAX handles templates and not the actual coding of the templates. There are two types of templates: page templates and module templates. An overview of how these two templates come together is belwo.
+    </para>
+<screen>
++----------------------------------------------------------------------------+
+|                                                                            |
+|                                                                            |
+|                            PAGE TEMPLATE                                   |
+|                                                                            |
+|                                                                            |
+|                                                                            |
++----------------------------------------------------------------------------+
+|                   |                                                        |
+|                   | ====================================================== |
+|                   | +                                                    + |
+|                   | +                                                    + |
+|                   | +                        M                           + |
+|                   | +                        O                           + |
+|                   | +                        D                           + |
+|                   | +                        U                           + |
+|                   | +                        L                           + |
+|                   | +                        E                           + |
+|                   | +                                                    + |
+|                   | +                        T                           + |
+|                   | +                        E                           + |
+|                   | +                        M                           + |
+|                   | +                        P                           + |
+|                   | +                        L                           + |
+|                   | +                        A                           + |
+|                   | +                        T                           + |
+|                   | +                        E                           + |
+|                   | +                                                    + |
+|                   | +                                                    + |
+|                   | ====================================================== |
+|                   |                                                        |
++----------------------------------------------------------------------------+
+</screen>
+
+    <para>
+As you can see the module is rendered and then placed inside of the page template. Once the page template is rendered the module template has already been rendered, which may be a good thing to remember.
+    </para>
+  </sect1>
+  <sect1>
+    <title>Page Templates</title>
+    <para>
+Page Templates
+
+    </para>
+  </sect1>
+  <sect1>
+    <title>Module Templates</title>
+    <para>
+Page Templates
+    </para>
+  </sect1>
+
+</chapter>
+</book>

@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<!-- MySQL does not support foreign keys. This means   -->
+<!-- that this XML file will not reflect foreign key   -->
+<!-- relationships. You will have to do that yourself. -->
+<database name="jax">
+  <table  name="groups">
+    <column name="groupID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="TINYINT"/>
+    <column name="name"
+            required="true"
+            primaryKey="true"
+            size="50"
+            type="CHAR"/>
+    <column name="sticky"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+  </table>
+  <table  name="groups_users">
+    <column name="groupID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="TINYINT"/>
+    <column name="userID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+
+    <foreign-key foreignTable="groups">
+      <reference local="groupID" foreign="groupID"/>
+    </foreign-key>
+    <foreign-key foreignTable="users">
+      <reference local="userID" foreign="userID"/>
+    </foreign-key>
+
+  </table>
+  <table  name="modules">
+    <column name="moduleID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="3"
+            type="SMALLINT"/>
+    <column name="name"
+            required="true"
+            size="45"
+            type="CHAR"/>
+    <column name="title"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="description"
+            required="true"
+            size=""
+            type="LONGVARCHAR"/>
+    <column name="image"
+            required="true"
+            size="45"
+            type="CHAR"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <column name="available"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <index>
+      <index-column name="name"/>
+    </index>
+  </table>
+  <table  name="modules_groups">
+    <column name="moduleID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="3"
+            type="SMALLINT"/>
+    <column name="groupID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="TINYINT"/>
+    <column name="permissions"
+            required="true"
+            default="644"
+            size="3"
+            type="SMALLINT"/>
+
+    <foreign-key foreignTable="modules">
+      <reference local="moduleID" foreign="moduleID"/>
+    </foreign-key>
+
+  </table>
+  <table  name="modules_config">
+    <column name="module"
+            required="true"
+            primaryKey="true"
+            size="15"
+            type="CHAR"/>
+    <column name="var"
+            required="true"
+            primaryKey="true"
+            size="25"
+            type="CHAR"/>
+    <column name="value"
+            required="true"
+            size="75"
+            type="CHAR"/>
+    <index>
+      <index-column name="var"/>
+    </index>
+    <foreign-key foreignTable="modules">
+      <reference local="module" foreign="name"/>
+    </foreign-key>
+  </table>
+  <table  name="preferences">
+    <column name="userID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="module"
+            required="true"
+            primaryKey="true"
+            size="15"
+            type="CHAR"/>
+    <column name="var"
+            required="true"
+            primaryKey="true"
+            size="25"
+            type="CHAR"/>
+    <column name="value"
+            required="true"
+            size="75"
+            type="CHAR"/>
+
+    <foreign-key foreignTable="modules">
+      <reference local="module" foreign="name"/>
+    </foreign-key>
+
+  </table>
+  <table  name="users">
+    <column name="userID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="9"
+            type="INTEGER"/>
+    <column name="password"
+            required="true"
+            size="15"
+            type="CHAR"/>
+    <column name="email"
+            required="true"
+            size="45"
+            type="CHAR"/>
+    <column name="fname"
+            required="true"
+            size="35"
+            type="CHAR"/>
+    <column name="lname"
+            required="true"
+            size="35"
+            type="CHAR"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <column name="admin"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <column name="available"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <index>
+      <index-column name="email"/>
+      <index-column name="posted"/>
+      <index-column name="available"/>
+    </index>
+    <unique>
+       <unique-column name="email"/>
+    </unique>
+  </table>
+  <table  name="users_sessions">
+    <column name="userID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="sessionID"
+            required="true"
+            size="32"
+            type="CHAR"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <column name="track"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <index>
+      <index-column name="userID"/>
+      <index-column name="sessionID"/>
+      <index-column name="posted"/>
+      <index-column name="track"/>
+    </index>
+    <foreign-key foreignTable="users">
+      <reference local="userID" foreign="userID"/>
+    </foreign-key>
+  </table>
+  <table name="plugins">
+    <column name="name"
+            required="true"
+            primaryKey="true"
+            size="50"
+            type="CHAR"/>
+    <column name="module"
+            required="true"
+            size="45"
+            type="CHAR"/>
+    <column name="title"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="available"
+            required="true"
+            default="0"
+            size="1"
+            type="TINYINT"/>
+    <index>
+      <index-column name="available"/>
+      <index-column name="module"/>
+    </index>
+  </table>
+</database>
+<!-- END OF MYSQL2TURBINE DUMP -->

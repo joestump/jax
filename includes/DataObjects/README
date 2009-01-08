@@ -1,0 +1,4 @@
+All PEAR DataObjects should be put into here. DataObjects are *NOT* loaded, so
+if your script needs them you must load them in your script. I think the
+DB_DataObject class will autoload (or attempt to autoload) missing classes, but
+I can't be too sure

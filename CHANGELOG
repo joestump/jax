@@ -1,0 +1,102 @@
+Changes in v. 1.7
+  - Fixed JX_PG_TPL_PATH bug found directly after tagging v. 1.6
+  - Fixed bad path in JxPresenter to JX_CORE_PATH
+
+Changes in v. 1.6
+  - Changed coding standards to be compliant with PEAR coding standards
+  - Fixed JxFieldRadio bug
+  - Upgraded to the latest version of function.navigate.php
+  - Fixed JxAdminUsersView enable/disable bug
+  - Removed xdebug code from index.php
+  - Added __default() function handling to index.php, using constructors for
+    default actions is deprecated
+  - Fixed JxFieldDate timestamp bug
+  - Removed checkdnsrr() from JxFieldEMail to avoid problematic lookups 
+  - Removed JX_DEFAULT_URI from JxConfig.php
+  - Changed default database name to "jax"
+  - Fixed faulty array checking in dbdo.php driver for Turbine
+  - Added debug.php to system module with debug as default presenter
+  - Added extra debugging information to xmldata.php
+  - Fixed undefined array key in JxPlugin
+  - Updated to new JxAdmin that handles actions for specific fields via the
+    _handle* functions and has options for SQL manipulation for retrieving 
+    records
+  - Fixed install.sh to set appropriate permissions on jax.log even if it
+    exists 
+  - Migrated JxHttp::setCookie() and the rest of the framework to native
+    PHP sessions (use either $_SESSION or $this->session->__set($var,$val)
+  - Added hostname based DB configuration (ie. connect to DB of the hostname,
+    with _'s instead of .'s - www.foo.com => www_foo_com for DB)
+  - Completely rewrote JxConfig.php to appropriately set up both the web
+    and shell environments
+  - Added JX_TEMPLATE to jax.ini.php
+  - Fixed template error that was showing up in default_admin.tpl when there
+    where no entries in the table (resulting in a Smarty error)
+  - Added JX_LOGIN_TYPE to automagically switch between username and email 
+    for login options
+  - Added error.tpl which allows eventHandlers to return instances of 
+    PEAR_Error and have them displayed as an error message
+  - Upgraded users module to be completely v1.6 compliant
+  - Added JxFieldTimezone.php 
+  - Added ability to host multiple sites from a single server using the server
+    name and hostname
+  - Upgraded Image_Transform to take advantage of getImageWidth() and
+    getImageHeight()
+  - Added local.php to override certain JxConfig.php settings when it comes
+    to running JAX in a hosted environment
+  - Create JxUpload class to handle file uploads of both images and regular
+    files
+  - JxUpload_image does image directory hashing automatically
+
+Changes in v. 1.4
+  - Added TODO 
+  
+Changes in v. 1.3
+  - Migrated JxContent to be a child class of DB_DataObject
+  - Fixed JxAdmin to use new JxContent
+  - Fixed bug in JCP that allowed users to manually access modules they did
+    no have access to
+  - Added links to logout/home in JCP's header
+  - Fixed bug that was causing JxAdmin::updateRecord() to return false even
+    when records were successfully updated
+  - Fixed bug that was causing JxFieldDate to crash when a timestamp was passed
+    as the field value
+  - Fixed bug in UNLOCK TABLES query in JxUtil's JxCreateId()
+  - Fixed potential bug that would attempt to load CVS directories as a module
+  - Added JxFieldString and JxFieldNumber as fields for better validating fields
+    for strings and numbers
+  - Fixed registration form to only allow a-z1-9\- in the username field
+
+Changes in v. 1.2
+  - Migrated JxModule to use DB_DataObject for isValid() and getModule()
+  - Deprecated JxModule::$title and JxModule::$description
+  - Moved $canRead, $canWrite and $canExec to JxAuth
+  - Added SQL to implement $canWrite, $canRead and $canExec in JxAuth's
+    constructor
+  - JxAuthGroup is now a valid and working auth type
+  - Started adding VIM folding markers to some of the core libraries
+  - Removed deprecated and non-completed classes
+  - Moved includes around so that they are only included when they are 
+    absolutely needed
+
+Changes in v. 1.1
+  - Added this CHANGELOG
+  - Reworked the way plugins are loaded by autodetecting plugins in each 
+    modules directory and only loading enabled plugins from the database
+  - Added a web frontend in System -> Plugins that allows users to turn
+    plugins on and off
+  - JxPlugin::enablePlugin has been deprecated. To enable plugins go into
+    the System -> Plugins tab in JCP. 
+  - Fixed System -> System Log so that it would properly display the last 50 
+    lines of the main log file
+  - Added System -> Modules to JCP that allows users to enable and disable
+    modules as well as alter permissions on modules
+  - Deprecated the old plugins director in favor of putting system plugins 
+    in modules/system/plugins 
+  - Removed all traces of $JX_PLUGINS 
+  - Modified the way index.php loads each module's init.php file so that it
+    checks to see if the file has code in it to avoid unecessary include calls
+  - Moved icons around in the content module
+  - Change default error mode to PEAR_ERROR_CALLBACK to log bad queries
+  - Added JxLogDbError() to JxSingletonDb to automatically log bad queries
+    to the main log file

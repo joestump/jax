@@ -1,0 +1,3 @@
+This directory contains core classes that enhance, modify and/or are used by
+modules. Classes that pertain to authentication, rendering, etc. should be
+placed in other directories.

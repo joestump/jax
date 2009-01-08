@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<database>
+	<table name="content">
+	<row>
+		<field name="contentID">287768019</field>
+		<field name="userID">1</field>
+		<field name="posted">1071384387</field>
+		<field name="lastUpdate">1071384387</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuCategories</field>
+		<field name="title">Main Menu</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">278397964</field>
+		<field name="userID">1</field>
+		<field name="posted">1071384434</field>
+		<field name="lastUpdate">1071384434</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">Home</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">683243884</field>
+		<field name="userID">1</field>
+		<field name="posted">1071384453</field>
+		<field name="lastUpdate">1071384453</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">Login</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">473978857</field>
+		<field name="userID">1</field>
+		<field name="posted">1071384468</field>
+		<field name="lastUpdate">1071384468</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">Logout</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">524018555</field>
+		<field name="userID">1</field>
+		<field name="posted">1071384486</field>
+		<field name="lastUpdate">1071384486</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">Create Account</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">757814384</field>
+		<field name="userID">1</field>
+		<field name="posted">1071385883</field>
+		<field name="lastUpdate">1071385883</field>
+		<field name="available">0</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">JAX Control Panel</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">137594838</field>
+		<field name="userID">1</field>
+		<field name="posted">1071385924</field>
+		<field name="lastUpdate">1071385924</field>
+		<field name="available">0</field>
+		<field name="mime">JxAdminMenuCategories</field>
+		<field name="title">Company</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">622905654</field>
+		<field name="userID">1</field>
+		<field name="posted">1071385939</field>
+		<field name="lastUpdate">1071385939</field>
+		<field name="available">0</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">Contact</field>
+		<field name="module">menu</field>
+	</row>
+	<row>
+		<field name="contentID">723058982</field>
+		<field name="userID">1</field>
+		<field name="posted">1071385950</field>
+		<field name="lastUpdate">1071385969</field>
+		<field name="available">1</field>
+		<field name="mime">JxAdminMenuLinks</field>
+		<field name="title">FAQ</field>
+		<field name="module">menu</field>
+	</row>
+	</table>
+	<table name="content_groups">
+	<row>
+		<field name="contentID">287768019</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">287768019</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">287768019</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">278397964</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">278397964</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">278397964</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">683243884</field>
+		<field name="groupID">1</field>
+		<field name="permissions">300</field>
+	</row>
+	<row>
+		<field name="contentID">683243884</field>
+		<field name="groupID">2</field>
+		<field name="permissions">0</field>
+	</row>
+	<row>
+		<field name="contentID">683243884</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">473978857</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">473978857</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">473978857</field>
+		<field name="groupID">3</field>
+		<field name="permissions">0</field>
+	</row>
+	<row>
+		<field name="contentID">524018555</field>
+		<field name="groupID">1</field>
+		<field name="permissions">300</field>
+	</row>
+	<row>
+		<field name="contentID">524018555</field>
+		<field name="groupID">2</field>
+		<field name="permissions">100</field>
+	</row>
+	<row>
+		<field name="contentID">524018555</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">757814384</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">757814384</field>
+		<field name="groupID">2</field>
+		<field name="permissions">0</field>
+	</row>
+	<row>
+		<field name="contentID">757814384</field>
+		<field name="groupID">3</field>
+		<field name="permissions">0</field>
+	</row>
+	<row>
+		<field name="contentID">137594838</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">137594838</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">137594838</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">622905654</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">622905654</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">622905654</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	<row>
+		<field name="contentID">723058982</field>
+		<field name="groupID">1</field>
+		<field name="permissions">700</field>
+	</row>
+	<row>
+		<field name="contentID">723058982</field>
+		<field name="groupID">2</field>
+		<field name="permissions">500</field>
+	</row>
+	<row>
+		<field name="contentID">723058982</field>
+		<field name="groupID">3</field>
+		<field name="permissions">400</field>
+	</row>
+	</table>
+	<table name="menu_categories">
+	<row>
+		<field name="contentID">287768019</field>
+		<field name="name">Main Menu</field>
+		<field name="url"></field>
+		<field name="hits">0</field>
+		<field name="sort">-1</field>
+	</row>
+	<row>
+		<field name="contentID">137594838</field>
+		<field name="name">Company</field>
+		<field name="url"></field>
+		<field name="hits">0</field>
+		<field name="sort">0</field>
+	</row>
+	</table>
+	<table name="menu_links">
+	<row>
+		<field name="contentID">278397964</field>
+		<field name="categoryID">287768019</field>
+		<field name="name">Home</field>
+		<field name="url">/</field>
+		<field name="hits">0</field>
+		<field name="sort">0</field>
+	</row>
+	<row>
+		<field name="contentID">683243884</field>
+		<field name="categoryID">287768019</field>
+		<field name="name">Login</field>
+		<field name="url">/users/login</field>
+		<field name="hits">0</field>
+		<field name="sort">2</field>
+	</row>
+	<row>
+		<field name="contentID">473978857</field>
+		<field name="categoryID">287768019</field>
+		<field name="name">Logout</field>
+		<field name="url">/users/logout</field>
+		<field name="hits">3</field>
+		<field name="sort">3</field>
+	</row>
+	<row>
+		<field name="contentID">524018555</field>
+		<field name="categoryID">287768019</field>
+		<field name="name">Create Account</field>
+		<field name="url">/users/register</field>
+		<field name="hits">0</field>
+		<field name="sort">4</field>
+	</row>
+	<row>
+		<field name="contentID">757814384</field>
+		<field name="categoryID">287768019</field>
+		<field name="name">JAX Control Panel</field>
+		<field name="url">/jax</field>
+		<field name="hits">0</field>
+		<field name="sort">1</field>
+	</row>
+	<row>
+		<field name="contentID">622905654</field>
+		<field name="categoryID">137594838</field>
+		<field name="name">Contact</field>
+		<field name="url">/contact</field>
+		<field name="hits">1</field>
+		<field name="sort">1</field>
+	</row>
+	<row>
+		<field name="contentID">723058982</field>
+		<field name="categoryID">137594838</field>
+		<field name="name">FAQ</field>
+		<field name="url">/faq</field>
+		<field name="hits">1</field>
+		<field name="sort">0</field>
+	</row>
+	</table>
+</database>

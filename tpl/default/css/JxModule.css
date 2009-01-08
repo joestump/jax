@@ -1,0 +1,42 @@
+/***** FORM STYLES *****/
+textarea{
+  border: 1px solid #777777;
+  background: #efefef;
+  font: 11px verdana;
+  color: #333333;
+
+}
+
+select{
+  border: 1px solid #777777;
+  background: #efefef;
+  font: 11px verdana;
+  color: #333333;
+}
+
+input{
+  border: 1px solid #999999;
+  background: #efefef;
+  font: 11px verdana;
+  color: #333333;
+}
+
+button{
+  background-color: #efefef;
+  font: 11px verdana;
+  color: #333333;
+  border: 1px solid #333333;
+}
+
+body,a,td {
+  font-family: Verdana, Tahoma, Arial;
+  font-size: 12px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}

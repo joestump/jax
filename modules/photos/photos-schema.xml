@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!-- MySQL does not support foreign keys. This means   -->
+<!-- that this XML file will not reflect foreign key   -->
+<!-- relationships. You will have to do that yourself. -->
+<database name="jax">
+  <table  name="photos_albums">
+    <column name="albumID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="INTEGER"/>
+    <column name="title"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="description"
+            type="LONGVARCHAR"/>
+    <column name="userID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <index>
+      <index-column name="posted"/>
+    </index>
+    <foreign-key foreignTable="users">
+      <reference local="userID" foreign="userID"/>
+    </foreign-key>
+  </table>
+  <table  name="photos_albums_images">
+    <column name="imageID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="INTEGER"/>
+    <column name="albumID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="INTEGER"/>
+  </table>
+  <table  name="photos_images">
+    <column name="imageID"
+            required="true"
+            default="0"
+            primaryKey="true"
+            size="2"
+            type="INTEGER"/>
+    <column name="userID"
+            required="true"
+            default="0"
+            size="9"
+            type="INTEGER"/>
+    <column name="caption"
+            required="true"
+            size="255"
+            type="CHAR"/>
+    <column name="type"
+            required="true"
+            size="5"
+            type="CHAR"/>
+    <column name="posted"
+            required="true"
+            default="0"
+            size="11"
+            type="INTEGER"/>
+    <index>
+      <index-column name="posted"/>
+    </index>
+    <foreign-key foreignTable="users">
+      <reference local="userID" foreign="userID"/>
+    </foreign-key>
+  </table>
+</database>
+<!-- END OF MYSQL2TURBINE DUMP -->

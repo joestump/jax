@@ -1,0 +1,1 @@
+We have found <b>{$users.count}</b> account(s) with the email <b>{$users.email}</b> associated with it. We have sent you the information regarding the account(s) to the email address you provided. Please check your email to retrieve your account information. You may now close this window.

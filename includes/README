@@ -1,0 +1,37 @@
+This code is maintained by the code nazi Joe Stump <joe@joestump.net> and 
+should not be committed to CVS by anyone but him. If you have some changes/bug
+fixes to the core JAX code you must first email Joe Stump <joe@joestump.net> 
+with the changes.
+
+- Auth 
+    The various classes that are used for authentication and session management.
+    This group includes JxUser, JxGroup, JxAuth(No|Group|Admin|User), etc.
+
+- App
+    These are the application classes that support the creation of modules, 
+    which includes JxAdmin, JxModule, JxContent, JxEmail and JxPlugin.
+
+- Draw
+    Classes that facilitate the creation of HTML/WAP should be placed in this
+    directory. Currently the holding place for the JxHtmlForm structure.
+
+- FCKeditor
+    The FCKeditor files. 
+
+- Objects
+    The core foundation classes for ALL other JAX objects. DO NOT EDIT THESE
+    FILES UNLESS YOU KNOW WHAT YOU ARE DOING! The list includes JxObject,
+    JxObjectDb and the JxSingletons.
+
+- PEAR
+    The working stable copy of PEAR that JAX uses. These files should not be
+    edited in any way and should only be updated if a new stable release of
+    one of the PEAR modules is released.
+
+- Smarty
+    The current working stable copy of Smarty that JAX uses. Like PEAR this 
+    should not be edited unless a new stable version is released.
+
+- Util
+    Helper classes that don't fit anywhere else.
+

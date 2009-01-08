@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<database name="josephstump">
+  <table name="users">
+    <row>
+      <field name="userID">0</field>
+      <field name="password">0987978</field>
+      <field name="email">void@void.com</field>
+      <field name="fname"></field>
+      <field name="lname"></field>
+      <field name="posted">0</field>
+      <field name="admin">0</field>
+      <field name="available">0</field>
+    </row>
+    <row>
+      <field name="userID">1</field>
+      <field name="password">s1te4dmin</field>
+      <field name="email">root@root.com</field>
+      <field name="fname">Site Admin</field>
+      <field name="lname"></field>
+      <field name="posted">0</field>
+      <field name="admin">1</field>
+      <field name="available">1</field>
+    </row>
+  </table>
+  <table name="groups_users">
+    <row>
+      <field name="groupID">3</field>
+      <field name="userID">0</field>
+    </row>
+    <row>
+      <field name="groupID">1</field>
+      <field name="userID">1</field>
+    </row>
+  </table>
+  <table name="groups">
+    <row>
+      <field name="groupID">1</field>
+      <field name="name">Administrators</field>
+      <field name="sticky">1</field>
+    </row>
+    <row>
+      <field name="groupID">2</field>
+      <field name="name">Registered Users</field>
+      <field name="sticky">1</field>
+    </row>
+    <row>
+      <field name="groupID">3</field>
+      <field name="name">Anonymous Users</field>
+      <field name="sticky">1</field>
+    </row>
+  </table>
+</database>        

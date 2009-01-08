@@ -1,0 +1,37 @@
+
+#pup {position:absolute; visibility:hidden; z-index:200; width:130; }
+
+table.tooltip {
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  background: lightyellow;
+}
+
+td.tooltip {
+  padding: 0px;
+  margin: 0px;
+  font-family: Arial;
+  font-size: 11px;
+}
+
+td.JxLabel {
+  width: 30%;
+}
+
+td.JxFieldSubmit {
+  text-align: center;
+}
+
+table.JxVbox {
+  width: 100%;
+}
+
+table.jxHtmlForm {
+  width: 100%;
+}
+
+table.jxHtmlFormContainer {
+  width: 100%;
+}
+
